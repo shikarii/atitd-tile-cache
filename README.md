@@ -1,5 +1,9 @@
 # atitd-tile-cache
 
+[![CI](https://github.com/shikarii/atitd-tile-cache/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/shikarii/atitd-tile-cache/actions/workflows/ci.yml)
+[![Latest Release](https://img.shields.io/github/v/release/shikarii/atitd-tile-cache?display_name=tag)](https://github.com/shikarii/atitd-tile-cache/releases)
+[![Python](https://img.shields.io/badge/python-3.12%2B-blue)](https://www.python.org/downloads/)
+
 Compressed ATITD tile-cache snapshots and release assets.
 
 ## What this repo is for

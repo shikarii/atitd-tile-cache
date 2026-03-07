@@ -1,0 +1,27 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.pytype/
+.mypy_cache/
+.venv/
+docker/.env
+dist/
+build/
+*.egg-info/
+.coverage
+htmlcov/
+*.tar.gz
+*.sha256
+.DS_Store
+
+# One-off smoke test workspace.
+work/
+
+# Local tile working cache (never commit binaries).
+tile_cache/*
+!tile_cache/.gitkeep
+!tile_cache/README.md
+
+# Generated release archives/checksums.
+releases/*
+!releases/.gitkeep

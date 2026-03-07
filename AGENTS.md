@@ -52,6 +52,9 @@ Every tile release should be reproducible and auditable:
 - Record compression settings (quality/workers).
 - Include SHA256 for uploaded archives.
 - Prefer manual workflow dispatch for controlled releases.
+- After every published release, `main` must be updated from `develop` immediately.
+  - Preferred path: fast-forward `main` to `develop`.
+  - If fast-forward is not possible, open a sync PR from `develop` to `main` and merge it before the next release.
 
 ## 6. Branch Discipline
 

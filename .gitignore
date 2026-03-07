@@ -13,6 +13,9 @@ htmlcov/
 *.sha256
 .DS_Store
 
+# One-off smoke test workspace.
+work/
+
 # Local tile working cache (never commit binaries).
 tile_cache/*
 !tile_cache/.gitkeep

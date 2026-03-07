@@ -1,0 +1,16 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Local tile working cache (never commit binaries).
+tile_cache/*
+!tile_cache/.gitkeep
+!tile_cache/README.md
+
+# Generated release archives/checksums.
+releases/*
+!releases/.gitkeep

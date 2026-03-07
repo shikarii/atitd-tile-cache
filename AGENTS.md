@@ -48,6 +48,9 @@ Before push:
 
 Every tile release should be reproducible and auditable:
 
+- Before publishing a release, create a release branch from current `main`.
+  - Naming: `release/<tag-or-purpose>` (example: `release/v2026.03.07-tale10`).
+  - Do not cut release branches from `develop`.
 - Record the source tale and zoom range.
 - Record compression settings (quality/workers).
 - Include SHA256 for uploaded archives.

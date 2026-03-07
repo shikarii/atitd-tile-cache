@@ -1,10 +1,17 @@
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+.pytype/
+.mypy_cache/
 .venv/
 dist/
 build/
 *.egg-info/
+.coverage
+htmlcov/
+*.tar.gz
+*.sha256
+.DS_Store
 
 # Local tile working cache (never commit binaries).
 tile_cache/*

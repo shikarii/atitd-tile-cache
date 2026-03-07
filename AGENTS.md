@@ -40,6 +40,8 @@ Before push:
 1. `uv sync`
 2. `uv run ruff check .`
 3. `uv run ruff format --check .`
+4. `uv run pytest`
+5. `uv run pytype` (Linux runner/CI)
 
 ## 5. Release Workflow Contract
 
@@ -55,3 +57,9 @@ Every tile release should be reproducible and auditable:
 - `develop` is the default integration branch.
 - Use feature branches and pull requests into `develop`.
 - CODEOWNERS approval is required before merge.
+- Every PR must include a full issue URL and a closing statement with full issue URL.
+
+## 7. Issue Close-Out
+
+- Use `.github/ISSUE_CLOSE_SUMMARY_TEMPLATE.md` before closing an issue.
+- Include PR URL, commit SHA, and validation evidence.

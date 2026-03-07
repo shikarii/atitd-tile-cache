@@ -21,6 +21,7 @@ Tile payloads are created locally and uploaded as GitHub Release assets.
 - `develop` is the primary/default branch.
 - Changes should land through pull requests targeting `develop`.
 - `develop` is protected and requires CODEOWNERS review approval.
+- PRs must include full issue URLs and a closing statement (`Closes <issue-url>`).
 - CI workflows are configured for self-hosted runners to avoid GitHub-hosted billing.
 
 ## Setup
@@ -81,4 +82,15 @@ gh release create v2026.03.07 \
 cp docker/.env.example docker/.env
 # set RUNNER_TOKEN in docker/.env
 bash docker/scripts/setup_runner.sh
+```
+
+## Quality checks
+
+```bash
+uv sync --group dev
+uv run ruff check .
+uv run ruff format --check .
+uv run pytest
+# pytype runs in Linux CI/self-hosted runner
+uv run pytype
 ```

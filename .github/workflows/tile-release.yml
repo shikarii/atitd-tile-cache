@@ -1,0 +1,89 @@
+name: Build Tile Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tale:
+        description: "Tale name (e.g. tale10)"
+        required: true
+        default: "tale10"
+      min_zoom:
+        description: "Min zoom level"
+        required: true
+        default: "0"
+      max_zoom:
+        description: "Max zoom level"
+        required: true
+        default: "6"
+      quality:
+        description: "WebP quality"
+        required: true
+        default: "85"
+      workers:
+        description: "Worker count"
+        required: true
+        default: "8"
+      release_tag:
+        description: "Release tag (e.g. v2026.03.07)"
+        required: true
+        default: "v2026.03.07"
+      asset_name_template:
+        description: "Asset template, supports {tale}"
+        required: true
+        default: "tile_cache_{tale}.tar.gz"
+
+jobs:
+  build-and-release:
+    runs-on: [self-hosted, linux, x64]
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Setup Python
+        run: uv python install 3.12
+
+      - name: Sync deps
+        run: uv sync --group dev
+
+      - name: Mirror tiles
+        run: |
+          uv run atitd-tile-mirror \
+            --tale "${{ inputs.tale }}" \
+            --output-dir tile_cache \
+            --min-zoom "${{ inputs.min_zoom }}" \
+            --max-zoom "${{ inputs.max_zoom }}" \
+            --workers "${{ inputs.workers }}"
+
+      - name: Compress tiles
+        run: |
+          uv run atitd-tile-compress \
+            --tile-cache-dir tile_cache \
+            --quality "${{ inputs.quality }}" \
+            --workers "${{ inputs.workers }}"
+
+      - name: Package release artifact
+        run: |
+          uv run atitd-tile-release \
+            --tale "${{ inputs.tale }}" \
+            --tile-cache-root tile_cache \
+            --output-dir releases \
+            --asset-name-template "${{ inputs.asset_name_template }}"
+
+      - name: Upload release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ASSET_NAME="${{ inputs.asset_name_template }}"
+          ASSET_NAME="${ASSET_NAME/\{tale\}/${{ inputs.tale }}}"
+          gh release create "${{ inputs.release_tag }}" \
+            "releases/${ASSET_NAME}" \
+            "releases/${ASSET_NAME}.sha256" \
+            --repo "${{ github.repository }}" \
+            --title "Tile cache ${{ inputs.tale }}" \
+            --notes "Automated tile refresh for ${{ inputs.tale }}"

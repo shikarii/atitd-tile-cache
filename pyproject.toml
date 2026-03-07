@@ -1,0 +1,53 @@
+[project]
+name = "atitd-tile-cache"
+version = "0.1.0"
+description = "Tooling for mirroring, compressing, and packaging ATITD tile caches for releases."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "pillow>=11.1.0,<12",
+]
+
+[dependency-groups]
+dev = [
+  "pytype>=2024.10.0; platform_system != 'Windows'",
+  "pytest>=8.3.0,<9",
+  "pytest-cov>=5.0.0,<6",
+  "ruff>=0.11.0,<0.12",
+]
+
+[project.scripts]
+atitd-tile-mirror = "atitd_tile_cache.cli.mirror_tiles:main"
+atitd-tile-compress = "atitd_tile_cache.cli.compress_tiles:main"
+atitd-tile-release = "atitd_tile_cache.cli.release_tiles:main"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "N"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --cov=src/atitd_tile_cache/tooling --cov-report=term-missing --cov-fail-under=85"
+
+[tool.coverage.run]
+source = ["src/atitd_tile_cache/tooling"]
+omit = [
+  "src/atitd_tile_cache/tooling/__init__.py",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

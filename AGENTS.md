@@ -15,7 +15,7 @@ This repository exists to host ATITD tile cache release artifacts.
 - Source tiles are mirrored from the ATITD wiki.
 - Tiles are optionally converted to WebP for smaller payloads.
 - Release archives are uploaded as GitHub Release assets.
-- The main `AtitdScripts` repository must never be used for large tile binary history.
+- Other code repositories must not be used for large tile binary history.
 
 ## 2. Storage Contract
 
@@ -52,6 +52,9 @@ Every tile release should be reproducible and auditable:
 - Record compression settings (quality/workers).
 - Include SHA256 for uploaded archives.
 - Prefer manual workflow dispatch for controlled releases.
+- After every published release, `main` must be updated from `develop` immediately.
+  - Preferred path: fast-forward `main` to `develop`.
+  - If fast-forward is not possible, open a sync PR from `develop` to `main` and merge it before the next release.
 
 ## 6. Branch Discipline
 

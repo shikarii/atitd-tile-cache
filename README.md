@@ -57,3 +57,9 @@ uv run atitd-tile-release --tale tale10 --tile-cache-root tile_cache --output-di
 - Use feature branches and PRs targeting `develop`.
 - CODEOWNERS approval is required before merge.
 - For release operations, follow `AGENTS.md` and `CONTRIBUTING.md`.
+
+## License and attribution
+
+- See `LICENSE` for repository licensing and third-party image notice.
+- Tile images are mirrored from `https://atitd.wiki/`.
+- Image rights are retained by their original owners, including Desert Nomad Studios.

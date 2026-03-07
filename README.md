@@ -1,14 +1,14 @@
 # atitd-tile-cache
 
-Public release-asset repository for ATITD map tile caches.
+Public tile cache repository for ATITD map caches.
 
-This repository keeps tile binaries out of `AtitdScripts` git history.
-Tile payloads are created locally and uploaded as GitHub Release assets.
+This repository tracks compressed `.webp` tile snapshots directly under
+`tile_cache/<tale>/...`, then produces release archives from that tracked state.
 
 ## Layout
 
 - `src/atitd_tile_cache/` - python tooling package
-- `tile_cache/` - local working cache root (ignored by git)
+- `tile_cache/` - tracked compressed cache snapshots (`.webp`)
 - `releases/` - generated `.tar.gz` and `.sha256` artifacts (ignored by git)
 
 ## Runtime requirements
@@ -61,8 +61,14 @@ uv run atitd-tile-release --tale tale10 --tile-cache-root tile_cache --output-di
 ## Release asset contract
 
 - Asset name: `tile_cache_<tale>.tar.gz` (default)
-- Archive layout: `<tale>/<z>/<x>/<y>.png|webp`
+- Archive layout: `<tale>/<z>/<x>/<y>.webp`
 - Checksum: `<asset>.sha256`
+
+## Tile snapshot policy
+
+- Tracked in git: `tile_cache/**/*.webp`
+- Never tracked: raw `.png` source tiles
+- Never tracked: generated release artifacts in `releases/`
 
 ## Publish release assets
 

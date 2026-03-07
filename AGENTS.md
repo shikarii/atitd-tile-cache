@@ -41,7 +41,7 @@ Before push:
 2. `uv run ruff check .`
 3. `uv run ruff format --check .`
 4. `uv run pytest`
-5. `uv run pytype` (Linux runner/CI)
+5. `uv run pytype src/atitd_tile_cache` (Linux runner/CI)
 
 ## 5. Release Workflow Contract
 

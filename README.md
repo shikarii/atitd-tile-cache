@@ -92,5 +92,5 @@ uv run ruff check .
 uv run ruff format --check .
 uv run pytest
 # pytype runs in Linux CI/self-hosted runner
-uv run pytype
+uv run pytype src/atitd_tile_cache
 ```

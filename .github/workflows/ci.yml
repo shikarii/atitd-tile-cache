@@ -32,4 +32,4 @@ jobs:
         run: uv run pytest
 
       - name: Pytype
-        run: uv run pytype
+        run: uv run pytype src/atitd_tile_cache

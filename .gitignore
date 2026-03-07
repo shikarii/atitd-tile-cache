@@ -17,10 +17,14 @@ htmlcov/
 # One-off smoke test workspace.
 work/
 
-# Local tile working cache (never commit binaries).
-tile_cache/*
+# Tracked tile cache snapshot policy:
+# - Keep README/.gitkeep and all .webp tiles in git
+# - Ignore everything else under tile_cache (especially .png source tiles)
+tile_cache/**
 !tile_cache/.gitkeep
 !tile_cache/README.md
+!tile_cache/**/
+!tile_cache/**/*.webp
 
 # Generated release archives/checksums.
 releases/*

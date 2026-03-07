@@ -4,8 +4,8 @@ Repository operating rules for coding agents.
 
 ## 0. Prime Directive
 
-- Move fast on tooling, not on repository bloat.
-- Keep this repository text-first and release-asset-driven.
+- Move fast on reproducible tile distribution.
+- Keep this repository focused on compressed, auditable cache snapshots.
 - Do not introduce architecture changes without maintainer approval.
 
 ## 1. Purpose and Scope
@@ -19,11 +19,12 @@ This repository exists to host ATITD tile cache release artifacts.
 
 ## 2. Storage Contract
 
-- Never commit tile binaries (`.png`, `.webp`, archives) into git history.
-- Keep local working cache under `tile_cache/` (ignored by git).
-- Publish artifacts as release assets (for example `tile_cache_tale10.tar.gz`).
-- Maintain deterministic archive layout:
-  - `<tale>/<z>/<x>/<y>.png|webp`
+- Commit only compressed tile snapshots as `.webp` under `tile_cache/<tale>/...`.
+- Never commit source `.png` tiles.
+- Never commit generated release archives (`.tar.gz`, `.sha256`).
+- Keep deterministic layout:
+  - `<tale>/<z>/<x>/<y>.webp`
+- Release assets are built from the tracked WebP snapshot.
 
 ## 3. Python Tooling Contract
 

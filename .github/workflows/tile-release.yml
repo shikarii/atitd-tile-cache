@@ -69,11 +69,14 @@ jobs:
 
       - name: Package release artifact
         run: |
+          RELEASE_DIR="${RUNNER_TEMP}/tile-cache-release"
+          mkdir -p "${RELEASE_DIR}"
           uv run atitd-tile-release \
             --tale "${{ inputs.tale }}" \
             --tile-cache-root tile_cache \
-            --output-dir releases \
+            --output-dir "${RELEASE_DIR}" \
             --asset-name-template "${{ inputs.asset_name_template }}"
+          echo "RELEASE_DIR=${RELEASE_DIR}" >> "${GITHUB_ENV}"
 
       - name: Upload release asset
         env:
@@ -82,8 +85,8 @@ jobs:
           ASSET_NAME="${{ inputs.asset_name_template }}"
           ASSET_NAME="${ASSET_NAME/\{tale\}/${{ inputs.tale }}}"
           gh release create "${{ inputs.release_tag }}" \
-            "releases/${ASSET_NAME}" \
-            "releases/${ASSET_NAME}.sha256" \
+            "${RELEASE_DIR}/${ASSET_NAME}" \
+            "${RELEASE_DIR}/${ASSET_NAME}.sha256" \
             --repo "${{ github.repository }}" \
             --title "Tile cache ${{ inputs.tale }}" \
             --notes "Automated tile refresh for ${{ inputs.tale }}"

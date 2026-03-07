@@ -27,5 +27,4 @@ tile_cache/**
 !tile_cache/**/*.webp
 
 # Generated release archives/checksums.
-releases/*
-!releases/.gitkeep
+releases/

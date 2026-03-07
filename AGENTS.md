@@ -15,7 +15,7 @@ This repository exists to host ATITD tile cache release artifacts.
 - Source tiles are mirrored from the ATITD wiki.
 - Tiles are optionally converted to WebP for smaller payloads.
 - Release archives are uploaded as GitHub Release assets.
-- The main `AtitdScripts` repository must never be used for large tile binary history.
+- Other code repositories must not be used for large tile binary history.
 
 ## 2. Storage Contract
 

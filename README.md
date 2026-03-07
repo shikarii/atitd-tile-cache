@@ -48,7 +48,7 @@ Examples:
 ```bash
 uv run atitd-tile-mirror --tale tale10 --min-zoom 0 --max-zoom 6
 uv run atitd-tile-compress --tile-cache-dir tile_cache --quality 85 --workers 8
-uv run atitd-tile-release --tale tale10 --tile-cache-root tile_cache --output-dir releases
+uv run atitd-tile-release --tale tale10 --tile-cache-root tile_cache --output-dir work/releases
 ```
 
 ## Contribution and policy

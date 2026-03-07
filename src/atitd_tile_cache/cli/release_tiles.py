@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import tempfile
 from pathlib import Path
 
 from atitd_tile_cache.tooling.release_tiles import BuildReleaseConfig, run_build_release
@@ -18,7 +19,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--output-dir",
-        default=str((Path.cwd() / "releases").resolve()),
+        default=str((Path(tempfile.gettempdir()) / "atitd-tile-cache" / "releases").resolve()),
         help="Directory where release archives/checksums are written.",
     )
     parser.add_argument(

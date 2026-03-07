@@ -5,6 +5,7 @@ from __future__ import annotations
 import dataclasses
 import hashlib
 import tarfile
+import tempfile
 from collections.abc import Callable
 from pathlib import Path
 
@@ -13,7 +14,7 @@ from pathlib import Path
 class BuildReleaseConfig:
     tale: str = "tale10"
     tile_cache_root: str = str((Path.cwd() / "tile_cache").resolve())
-    output_dir: str = str((Path.cwd() / "releases").resolve())
+    output_dir: str = str((Path(tempfile.gettempdir()) / "atitd-tile-cache" / "releases").resolve())
     asset_name_template: str = "tile_cache_{tale}.tar.gz"
 
 

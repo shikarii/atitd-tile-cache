@@ -1,0 +1,15 @@
+{
+  "name": "atitd-tile-viewer-example",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal Node + React example that serves atitd-tile-cache releases.",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "tar": "^7.4.3"
+  }
+}
+

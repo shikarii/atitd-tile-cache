@@ -51,6 +51,14 @@ uv run atitd-tile-compress --tile-cache-dir tile_cache --quality 85 --workers 8
 uv run atitd-tile-release --tale tale10 --tile-cache-root tile_cache --output-dir work/releases
 ```
 
+## Example consumer project
+
+See `examples/react-node-tile-viewer/` for a minimal React + Node server that:
+
+- bootstraps tile cache into `~/.atitd/tile_cache` from the latest (or pinned) release
+- serves `/tiles/<tale>/<z>/<x>/<y>.webp`
+- renders the map layer with Leaflet
+
 ## Contribution and policy
 
 - `develop` is the default integration branch.
